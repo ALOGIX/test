@@ -44,18 +44,83 @@
             min-height: 100vh;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(230, 57, 70, 0.15) 0%, transparent 25%),
-                radial-gradient(circle at 80% 70%, rgba(20, 33, 61, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 10% 20%, rgba(230, 57, 70, 0.2) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(20, 33, 61, 0.2) 0%, transparent 25%),
+                radial-gradient(circle at 30% 60%, rgba(255, 215, 0, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 70% 30%, rgba(29, 53, 87, 0.15) 0%, transparent 25%),
                 linear-gradient(to bottom, var(--darker), var(--dark));
             background-attachment: fixed;
-            animation: gradientBackground 15s ease infinite;
-            background-size: 200% 200%;
+            animation: gradientBackground 20s ease infinite alternate;
+            background-size: 300% 300%;
         }
 
         @keyframes gradientBackground {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        .glow-effect {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            z-index: -1;
+            animation: glowMove 15s ease infinite alternate;
+        }
+
+        .glow-1 {
+            background: var(--primary);
+            top: 20%;
+            left: 10%;
+        }
+
+        .glow-2 {
+            background: var(--secondary);
+            bottom: 10%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+
+        .glow-3 {
+            background: var(--gold);
+            top: 50%;
+            right: 20%;
+            animation-delay: 5s;
+        }
+
+        @keyframes glowMove {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50px, 50px); }
+            50% { transform: translate(-30px, 80px); }
+            75% { transform: translate(70px, -40px); }
+            100% { transform: translate(-20px, -60px); }
         }
 
         .header {
@@ -436,7 +501,6 @@
             z-index: 1;
         }
 
-        /* صفحة السلة */
         .cart-page {
             position: fixed;
             top: 0;
@@ -667,7 +731,6 @@
             z-index: 1;
         }
 
-        /* صفحة الدفع */
         .checkout-page {
             position: fixed;
             top: 0;
@@ -843,88 +906,6 @@
             z-index: 1;
         }
 
-        /* رسالة الشكر */
-        .thank-you-message {
-            text-align: center;
-            padding: 4rem 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            display: none;
-        }
-
-        .thank-you-icon {
-            font-size: 6rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            animation: pulse 2s infinite;
-        }
-
-        .thank-you-title {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--light);
-            background: linear-gradient(to right, var(--primary), var(--gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 900;
-        }
-
-        .thank-you-text {
-            color: var(--text-secondary);
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            line-height: 1.8;
-        }
-
-        .back-to-home {
-            background: var(--gradient);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            transition: var(--transition);
-            box-shadow: 0 5px 25px rgba(230, 57, 70, 0.5);
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 1.1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .back-to-home::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-dark);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .back-to-home:hover::after {
-            opacity: 1;
-        }
-
-        .back-to-home:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(230, 57, 70, 0.7);
-        }
-
-        .back-to-home span {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* طبقة التعتيم */
         .overlay {
             position: fixed;
             top: 0;
@@ -944,7 +925,6 @@
             visibility: visible;
         }
 
-        /* أنيميشنات */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -961,7 +941,6 @@
             animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         }
 
-        /* التكيف مع الشاشات الصغيرة */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1016,19 +995,19 @@
             .checkout-form {
                 padding: 1.5rem;
             }
-
-            .thank-you-message {
-                padding: 3rem 1rem;
-            }
-
-            .thank-you-title {
-                font-size: 2.2rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="app">
+        <!-- تأثيرات الجسيمات -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- تأثيرات الإضاءة -->
+        <div class="glow-effect glow-1"></div>
+        <div class="glow-effect glow-2"></div>
+        <div class="glow-effect glow-3"></div>
+
         <!-- الهيدر -->
         <header class="header">
             <div class="logo" id="logo">
@@ -1114,18 +1093,6 @@
                     <span>ارسال الطلب عبر واتساب</span>
                 </button>
             </form>
-            
-            <div class="thank-you-message" id="thankYouMessage">
-                <div class="thank-you-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h2 class="thank-you-title">شكراً لطلبك!</h2>
-                <p class="thank-you-text">تم ارسال طلبك بنجاح وسنتواصل معك قريباً لتأكيد التفاصيل.</p>
-                <button class="back-to-home" id="backToHome">
-                    <i class="fas fa-home"></i>
-                    <span>العودة للصفحة الرئيسية</span>
-                </button>
-            </div>
         </div>
 
         <!-- طبقة التعتيم -->
@@ -1133,7 +1100,7 @@
     </div>
 
     <script>
-        // بيانات المنتجات
+        // بيانات المنتجات مع أسماء الألوان
         const products = [
             {
                 id: 1,
@@ -1143,7 +1110,12 @@
                 image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=725&q=80",
                 isNew: true,
                 sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-                colors: ['#E63946', '#14213D', '#000000', '#FFFFFF']
+                colors: [
+                    {code: '#E63946', name: 'أحمر ناري'},
+                    {code: '#14213D', name: 'أزرق داكن'},
+                    {code: '#000000', name: 'أسود'},
+                    {code: '#FFFFFF', name: 'أبيض'}
+                ]
             },
             {
                 id: 2,
@@ -1153,7 +1125,12 @@
                 image: "https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=726&q=80",
                 isNew: false,
                 sizes: ['28', '30', '32', '34', '36'],
-                colors: ['#1D3557', '#457B9D', '#A8DADC', '#F1FAEE']
+                colors: [
+                    {code: '#1D3557', name: 'أزرق بحري'},
+                    {code: '#457B9D', name: 'أزرق فاتح'},
+                    {code: '#A8DADC', name: 'فيروزي'},
+                    {code: '#F1FAEE', name: 'أبيض ناعم'}
+                ]
             },
             {
                 id: 3,
@@ -1163,7 +1140,12 @@
                 image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80",
                 isNew: true,
                 sizes: ['S', 'M', 'L', 'XL'],
-                colors: ['#E63946', '#1D3557', '#000000', '#FFFFFF']
+                colors: [
+                    {code: '#E63946', name: 'أحمر ناري'},
+                    {code: '#1D3557', name: 'أزرق داكن'},
+                    {code: '#000000', name: 'أسود'},
+                    {code: '#FFFFFF', name: 'أبيض'}
+                ]
             },
             {
                 id: 4,
@@ -1173,7 +1155,12 @@
                 image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
                 isNew: false,
                 sizes: ['S', 'M', 'L'],
-                colors: ['#000000', '#1A1A1A', '#333333', '#4D4D4D']
+                colors: [
+                    {code: '#000000', name: 'أسود كلاسيك'},
+                    {code: '#1A1A1A', name: 'أسود داكن'},
+                    {code: '#333333', name: 'أسود فاتح'},
+                    {code: '#4D4D4D', name: 'رمادي غامق'}
+                ]
             },
             {
                 id: 5,
@@ -1183,7 +1170,12 @@
                 image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80",
                 isNew: true,
                 sizes: ['S', 'M', 'L', 'XL'],
-                colors: ['#FFFFFF', '#F5F5F5', '#E0E0E0', '#BDBDBD']
+                colors: [
+                    {code: '#FFFFFF', name: 'أبيض ناصع'},
+                    {code: '#F5F5F5', name: 'أبيض كريمي'},
+                    {code: '#E0E0E0', name: 'رمادي فاتح'},
+                    {code: '#BDBDBD', name: 'رمادي متوسط'}
+                ]
             },
             {
                 id: 6,
@@ -1193,7 +1185,12 @@
                 image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
                 isNew: false,
                 sizes: ['28', '30', '32', '34'],
-                colors: ['#1D3557', '#457B9D', '#A8DADC', '#F1FAEE']
+                colors: [
+                    {code: '#1D3557', name: 'أزرق داكن'},
+                    {code: '#457B9D', name: 'أزرق متوسط'},
+                    {code: '#A8DADC', name: 'أزرق سماوي'},
+                    {code: '#F1FAEE', name: 'أبيض ناعم'}
+                ]
             }
         ];
 
@@ -1210,8 +1207,6 @@
         const checkoutPage = document.getElementById('checkoutPage');
         const backToCart = document.getElementById('backToCart');
         const checkoutForm = document.getElementById('checkoutForm');
-        const thankYouMessage = document.getElementById('thankYouMessage');
-        const backToHome = document.getElementById('backToHome');
         const logo = document.getElementById('logo');
 
         // عرض المنتجات
@@ -1228,7 +1223,7 @@
                         
                         <div class="color-options" id="colorOptions-${product.id}">
                             ${product.colors.map(color => `
-                                <div class="color-option" data-color="${color}" style="background-color: ${color};"></div>
+                                <div class="color-option" data-color="${color.code}" data-color-name="${color.name}" style="background-color: ${color.code};"></div>
                             `).join('')}
                         </div>
                         
@@ -1328,7 +1323,9 @@
             const product = products.find(p => p.id === productId);
             if (!product) return;
             
-            const selectedColor = document.querySelector(`#colorOptions-${productId} .color-option.selected`)?.getAttribute('data-color');
+            const selectedColorElement = document.querySelector(`#colorOptions-${productId} .color-option.selected`);
+            const selectedColor = selectedColorElement?.getAttribute('data-color');
+            const selectedColorName = selectedColorElement?.getAttribute('data-color-name');
             const selectedSize = document.querySelector(`#sizeOptions-${productId} .size-option.selected`)?.getAttribute('data-size');
             const quantity = parseInt(document.getElementById(`quantity-${productId}`).textContent);
 
@@ -1353,6 +1350,7 @@
                     price: product.price,
                     image: product.image,
                     color: selectedColor,
+                    colorName: selectedColorName,
                     size: selectedSize,
                     quantity: quantity
                 });
@@ -1404,7 +1402,7 @@
                         <div class="cart-item-meta">
                             <div>
                                 <span style="display: inline-block; width: 18px; height: 18px; border-radius: 50%; background-color: ${item.color}; border: 1px solid var(--text-secondary); margin-left: 8px;"></span>
-                                <span>المقاس: ${item.size}</span>
+                                <span>اللون: ${item.colorName} | المقاس: ${item.size}</span>
                             </div>
                             <span class="cart-item-price">${item.price * item.quantity} ر.س</span>
                         </div>
@@ -1457,11 +1455,13 @@
             // أحداث الحذف
             document.querySelectorAll('.remove-item').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    removeCartItem(
-                        parseInt(this.getAttribute('data-id')),
-                        this.getAttribute('data-size'),
-                        this.getAttribute('data-color')
-                    );
+                    if (confirm('هل أنت متأكد من حذف هذا المنتج من السلة؟')) {
+                        removeCartItem(
+                            parseInt(this.getAttribute('data-id')),
+                            this.getAttribute('data-size'),
+                            this.getAttribute('data-color')
+                        );
+                    }
                 });
             });
         }
@@ -1525,13 +1525,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // العودة للصفحة الرئيسية
-        function backToMainPage() {
-            closeCheckoutPage();
-            toggleCart();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
         // معالجة إرسال الطلب
         function handleCheckout(e) {
             e.preventDefault();
@@ -1551,26 +1544,29 @@
             
             // الحصول على التاريخ والوقت الحالي
             const now = new Date();
-            const date = now.toLocaleDateString('ar-SA');
-            const time = now.toLocaleTimeString('ar-SA');
-            
-            let message = `*طلب جديد من متجر ناري*\n\n`;
-            message += `*التاريخ:* ${date}\n`;
-            message += `*الوقت:* ${time}\n\n`;
-            message += `*تفاصيل الطلب:*\n`;
-            message += `══════════════\n`;
-            
-            cartItems.forEach((item, index) => {
-                message += `*${index + 1}. ${item.name}*\n`;
-                message += `   - اللون: ${item.color}\n`;
-                message += `   - المقاس: ${item.size}\n`;
-                message += `   - الكمية: ${item.quantity}\n`;
-                message += `   - السعر: ${item.price * item.quantity} ر.س\n\n`;
+            const dateTimeString = now.toLocaleString('ar-SA', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
             });
             
-            message += `══════════════\n`;
-            message += `*المجموع الكلي:* ${total} ر.س\n\n`;
-            message += `*معلومات العميل:*\n`;
+            let message = `📦 *طلب جديد من متجر ناري* 🔥\n\n`;
+            message += `🕒 *وقت الطلب*: ${dateTimeString}\n\n`;
+            message += `📋 *تفاصيل الطلب*:\n`;
+            
+            cartItems.forEach((item, index) => {
+                message += `\n${index + 1}. *${item.name}*\n`;
+                message += `   - اللون: ${item.colorName}\n`;
+                message += `   - المقاس: ${item.size}\n`;
+                message += `   - الكمية: ${item.quantity}\n`;
+                message += `   - السعر: ${item.price * item.quantity} ر.س\n`;
+            });
+            
+            message += `\n💰 *المجموع الكلي*: ${total} ر.س\n\n`;
+            message += `👤 *معلومات العميل*:\n`;
             message += `- الاسم: ${fullName}\n`;
             message += `- الجوال: ${phone}\n`;
             message += `- العنوان: ${address}\n`;
@@ -1579,27 +1575,61 @@
                 message += `- ملاحظات: ${notes}\n`;
             }
             
-            message += `\nشكراً لثقتكم بمتجر ناري ❤️🔥`;
-            
+            // إنشاء رابط واتساب
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/7727220385?text=${encodedMessage}`;
-            
-            // عرض رسالة الشكر
-            checkoutForm.style.display = 'none';
-            thankYouMessage.style.display = 'block';
+            const whatsappUrl = `https://wa.me/966500000000?text=${encodedMessage}`;
             
             // مسح السلة
             localStorage.removeItem('cartItems');
             updateCart();
             
-            // فتح الواتساب
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-            }, 1000);
+            // إغلاق صفحة الدفع
+            closeCheckoutPage();
+            
+            // فتح واتساب مباشرة
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // إنشاء جسيمات متحركة
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // أحجام عشوائية
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // مواقع عشوائية
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // ألوان عشوائية
+                const colors = [
+                    'rgba(230, 57, 70, 0.3)',
+                    'rgba(20, 33, 61, 0.3)',
+                    'rgba(255, 215, 0, 0.3)',
+                    'rgba(29, 53, 87, 0.3)',
+                    'rgba(168, 218, 220, 0.3)'
+                ];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // سرعات عشوائية
+                const duration = Math.random() * 30 + 20;
+                particle.style.animation = `float ${duration}s linear infinite`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
         }
 
         // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
             displayProducts();
             updateCart();
             
@@ -1612,7 +1642,6 @@
             checkoutBtn.addEventListener('click', openCheckoutPage);
             backToCart.addEventListener('click', closeCheckoutPage);
             checkoutForm.addEventListener('submit', handleCheckout);
-            backToHome.addEventListener('click', backToMainPage);
             
             // حدث العودة للصفحة الرئيسية
             logo.addEventListener('click', () => {
@@ -1622,6 +1651,3 @@
     </script>
 </body>
 </html>
-
-
-ليش مكاعد يحولني و رساله للواتساب
